@@ -1,9 +1,14 @@
 import React from "react";
+import { Route, Routes } from "react-router-dom";
 
 export const Login = () => {
   return (
     <div>
-      <p>Login</p>
+      <Routes>
+        {/* <Route path="/form" > */}
+
+
+      </Routes>
     </div>
   );
 };

@@ -1,17 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { ButtonContainer, ButtonNav, HeaderContainer } from "./styles";
-// import { Container } from './styles';
+import { ButtonNav, Divider, HeaderContainer, HomeIcon } from "./styles";
+import { GlobalStyle } from "../../styles/global";
+import { ReactComponent as Dogs } from "../../assets/dogs.svg";
+
 
 const Header = () => {
-    return (
+  return (
+    <>
       <HeaderContainer>
+        <GlobalStyle />
         <ButtonNav to="/" end>
-          Home
+          <Dogs />
         </ButtonNav>
-  
-        <ButtonNav to="/login">Login/Cadastro</ButtonNav>
+        <ButtonNav to="/login">
+          Login/Criar
+          <HomeIcon />
+        </ButtonNav>
       </HeaderContainer>
-    );
-  };
+      <Divider />
+    </>
+  );
+};
+
 export default Header;
