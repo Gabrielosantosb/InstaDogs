@@ -1,4 +1,6 @@
 import { createGlobalStyle } from "styled-components"
+import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 
 export const GlobalStyle = createGlobalStyle`
@@ -19,3 +21,16 @@ export const GlobalStyle = createGlobalStyle`
     }
 
 `
+
+export const ButtonNav = styled(NavLink)`
+text-decoration: none;
+padding: 8px 16px;
+background-color: #eaeaea;
+border-radius: 4px;
+color: #333;
+margin: 0 8px;
+&:hover {
+  background-color: gray;
+  transition: 0.4s;
+}
+`;

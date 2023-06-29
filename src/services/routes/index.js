@@ -16,9 +16,9 @@ export const Navigation = () => {
       <Routes>
         <Route path="" element={<Home />} />
         <Route path="login" element={<Login />} />
-        <Route  path="formulario" element={<LoginForm/>}/>
-        <Route  path="formulario" element={<Register/>}/>
-        <Route  path="formulario" element={<ResetPassword/>}/>
+        <Route  path="login/cadastro" element={<LoginForm/>}/>
+        <Route  path="cadastro" element={<Register/>}/>
+        <Route  path="resetar" element={<ResetPassword/>}/>
       </Routes>
       <Footer />
     </BrowserRouter>
