@@ -4,13 +4,16 @@ import { ButtonNav } from "../../styles/global";
 import axios from "axios";
 import { Button, FormContainer} from "./styles";
 import { Input } from "../form/input";
+// import { useForm } from "../../Hooks/useForm";
 
 //'https://dogsapi.origamid.dev/json/jwt-auth'
 export const Login = () => {
+  
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false)
-  const [disableButton, setDisableButton] = useState(false)
+  
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -58,7 +61,6 @@ export const Login = () => {
           />
           
           <Button type="submit">Entrar</Button>
-          {/* <button type="submit">Entrar</button> */}
         {loading ? <Loading/> : <></>}
         </form>
       </FormContainer>
