@@ -9,6 +9,7 @@ import { Colors } from "../../styles/colors";
 import { TOKEN_POST, USER_GET } from "../../contants/endpoints";
 
 export const Login = () => {
+  const [userData, setUserData] = useState(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -23,7 +24,6 @@ export const Login = () => {
   }, [errorMessage]);
 
   // Caso o usuario já esteja no localStorage
-
     useEffect(() =>{
       const token = window.localStorage.getItem('token')
         if(token){
@@ -35,7 +35,7 @@ export const Login = () => {
     const {url, options} = USER_GET(token)
     const response = await axios.get(url, options)
     const {data} = response
-    console.log(data)
+    setUserData(data)
   }
   const validateFields = () => {
     const usernameResult = usernameValidator(username, setErrorMessage);
@@ -105,7 +105,7 @@ export const Login = () => {
           />
 
           <Button type="submit">Entrar</Button>
-          {loading ? <Loading /> : null}
+          {loading ? <Loading /> : <></>}
         </form>
         <p style={{ color: Colors.red }}>{errorMessage}</p>
       </FormContainer>
