@@ -13,7 +13,7 @@ export const UserStorage = ({ children }) => {
 
 
     
-
+// #TODO AJUSTAR
     const getUser = async(token) =>{
         const { url, options } = USER_GET(token);
         const response = await axios.get(url, options);
@@ -24,7 +24,10 @@ export const UserStorage = ({ children }) => {
 
     const userLogin = async (username, password) => {
         const { url, options } = TOKEN_POST({ username, password });
-        const tokenResponse = await axios.get(url, options);
+        const tokenResponse = await axios.post(url, {
+            username,
+            password,
+          }, options);
         const { token } = tokenResponse.data; // Extrai o token da resposta diretamente
         window.localStorage.setItem("token", token);
         getUser(token)
