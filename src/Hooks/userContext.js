@@ -1,5 +1,9 @@
 import React, { createContext, useEffect, useState } from "react";
-import { TOKEN_POST, TOKEN_VALIDATE_POST, USER_GET } from "../contants/endpoints";
+import {
+  TOKEN_POST,
+  TOKEN_VALIDATE_POST,
+  USER_GET,
+} from "../contants/endpoints";
 import axios from "axios";
 
 export const UserContext = createContext();
@@ -8,19 +12,33 @@ export const UserStorage = ({ children }) => {
   const [login, setLogin] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  
+
+
+
+  // TODO, Funcionando com fetch e nao com axios
   useEffect(() => {
     const autoLogin = async () => {
-      const token = window.localStorage.getItem('token');
+      const token = window.localStorage.getItem("token");
       if (token) {
-        const { url, options } = TOKEN_VALIDATE_POST(token);
-        const response = await axios.get(url, options);
-        // console.log(response)
-        console.log('teste');
+        try {
+          setError("");
+          setLoading(true);
+          const { url, options } = TOKEN_VALIDATE_POST(token);
+          const response = await axios.get(url, options);
+          if (response.status !== 200) {
+            throw new Error("Token Inválido");
+          }
+          await getUser(token);
+        } catch (error) {
+          console.error("deu não", error);
+        } finally {
+          setLoading(false);
+        }
       }
     };
     autoLogin();
   }, []);
+
   const getUser = async (token) => {
     const { url, options } = USER_GET(token);
     const response = await axios.get(url, options);
@@ -41,18 +59,18 @@ export const UserStorage = ({ children }) => {
       );
       const { status } = tokenResponse;
       const { token } = tokenResponse.data;
-      
+
       if (status === 200) {
-        console.log('Logado ');
+        console.log("Logado ");
         window.localStorage.setItem("token", token);
         getUser(token);
       } else {
         setError(true);
-        console.log('Login failed');
+        console.log("Login failed");
       }
     } catch (error) {
       setError(true);
-      console.log('Error :', error);
+      console.log("Error :", error);
     }
   };
 
