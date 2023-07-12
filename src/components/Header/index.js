@@ -8,7 +8,8 @@ import { UserContext } from "../../Hooks/userContext";
 
 const Header = () => {
   const[userData, setUserData] = useState('')
-  const user = useContext(UserContext)
+  const {data} = useContext(UserContext)
+  console.log(data)
   
   return (
     <>
@@ -18,13 +19,13 @@ const Header = () => {
           <Dogs />
         </ButtonNav>
 
-        {userData ? (
+        {data ? (
           <ButtonNav to="/minhaConta">
-            {userData} <HomeIcon />
+            {data.nome} <HomeIcon />
           </ButtonNav>
         ) : (
           <ButtonNav to="/login">
-            {userData} <HomeIcon />
+            Login/Criar <HomeIcon />
           </ButtonNav>
         )}
       </HeaderContainer>

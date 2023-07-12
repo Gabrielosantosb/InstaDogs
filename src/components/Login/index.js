@@ -16,6 +16,7 @@ export const Login = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const {userLogin} = useContext(UserContext)
+  
 
   // Timeout para set error
   useEffect(() => {
@@ -24,20 +25,7 @@ export const Login = () => {
     }, 3000);
   }, [errorMessage]);
 
-  // Caso o usuario já esteja no localStorage
-    // useEffect(() =>{
-    //   const token = window.localStorage.getItem('token')
-    //     if(token){
-    //       getUser(token)
-    //     }
-    // },[])
 
-  // const getUser = async(token) =>{
-  //   const {url, options} = USER_GET(token)
-  //   const response = await axios.get(url, options)
-  //   const {data} = response
-  //   setUserData(data)
-  // }
   const validateFields = () => {
     const usernameResult = usernameValidator(username, setErrorMessage);
     const emailResult = emailValidator();
@@ -58,30 +46,8 @@ export const Login = () => {
     if (!validateFields()) {
       return false;
     }
-
     userLogin(username, password)
-    // const { url, options } = TOKEN_POST({
-    //   username: username,
-    //   password: password,
-    // });
-    // try {
-    //   setLoading(true);
-      // const response = await axios.post(url, {
-      //   username,
-      //   password,
-      // }, options);
-    //   setLoading(false);
-    //   const { data, status } = response;
   
-    //   console.log("Status:", status);
-    //   console.log("Data:", data);
-  
-    //   // Armazena o token no localStorage
-    //   window.localStorage.setItem('token', data.token);
-    //   getUser(data.token)
-    // } catch (error) {
-    //   console.error(error);
-    // }
   };
   
   return (
