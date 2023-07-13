@@ -5,6 +5,8 @@ import {
   USER_GET,
 } from "../contants/endpoints";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { AES } from "crypto-js";
 
 export const UserContext = createContext();
 export const UserStorage = ({ children }) => {
@@ -12,25 +14,28 @@ export const UserStorage = ({ children }) => {
   const [login, setLogin] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
-
-
-  // TODO, Funcionando com fetch e nao com axios
   useEffect(() => {
     const autoLogin = async () => {
-      const token = window.localStorage.getItem("token");
-      if (token) {
+      const encryptedToken = window.localStorage.getItem("token");
+      if (encryptedToken) {
         try {
           setError("");
           setLoading(true);
-          const { url, options } = TOKEN_VALIDATE_POST(token);
-          const response = await axios.get(url, options);
+          const decryptedToken = AES.decrypt(
+            encryptedToken,
+            "secret-key" // Replace with your secret key
+          ).toString();
+          const { url, options } = TOKEN_VALIDATE_POST(decryptedToken);
+          const response = await axios(url, options);
           if (response.status !== 200) {
-            throw new Error("Token Inválido");
+            throw new Error("Invalid Token");
           }
-          await getUser(token);
+          await getUser(decryptedToken);
         } catch (error) {
-          console.error("deu não", error);
+          userLogout();
+          console.error("Error:", error);
         } finally {
           setLoading(false);
         }
@@ -38,6 +43,12 @@ export const UserStorage = ({ children }) => {
     };
     autoLogin();
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setError("");
+    }, 3000);
+  }, [error]);
 
   const getUser = async (token) => {
     const { url, options } = USER_GET(token);
@@ -49,33 +60,50 @@ export const UserStorage = ({ children }) => {
   const userLogin = async (username, password) => {
     const { url, options } = TOKEN_POST({ username, password });
     try {
-      const tokenResponse = await axios.post(
-        url,
-        {
-          username,
-          password,
-        },
-        options
-      );
+      setError("");
+      setLoading(true);
+      const tokenResponse = await axios.post(url, { username, password }, options);
+      if (!tokenResponse) {
+        throw new Error(`Error: ${tokenResponse.statusText}`);
+      }
       const { status } = tokenResponse;
       const { token } = tokenResponse.data;
 
+      if (status === 403) {
+        setError("Access Denied");
+      }
+
       if (status === 200) {
-        console.log("Logado ");
-        window.localStorage.setItem("token", token);
+        console.log("Logged in");
+        const encryptedToken = AES.encrypt(token, "secret-key").toString();
+        window.localStorage.setItem("token", encryptedToken);
         getUser(token);
+        navigate("/home");
       } else {
         setError(true);
         console.log("Login failed");
       }
     } catch (error) {
-      setError(true);
-      console.log("Error :", error);
+      setError(error.message);
+      setLogin(false);
+      console.log("Error:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
+  const userLogout = async () => {
+    setData("");
+    setError("");
+    setLoading(false);
+    setLogin("");
+    window.localStorage.removeItem("token");
+  };
+
   return (
-    <UserContext.Provider value={{ userLogin, data }}>
+    <UserContext.Provider
+      value={{ userLogin, data, userLogout, error, loading, login }}
+    >
       {children}
     </UserContext.Provider>
   );

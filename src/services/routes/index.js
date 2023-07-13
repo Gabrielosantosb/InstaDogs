@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { useContext } from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Header from "../../components/Header";
 
 import { Login } from "../../components/Login";
@@ -9,9 +9,12 @@ import { Register } from "../../pages/Register";
 import { ResetPassword } from "../../pages/ResetPassword";
 import { Account } from "../../pages/Account";
 import { Home } from "../../pages/Home";
-import { UserStorage } from "../../Hooks/userContext";
+import { UserContext, UserStorage } from "../../Hooks/userContext";
 export const Navigation = () => {
+  // const {login} = useContext(UserContext)
+  // if (login === true) return <Navigate to ='/conta'/>
   return (
+
     <BrowserRouter>
       <UserStorage>
         <Header />

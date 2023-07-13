@@ -5,7 +5,7 @@ import React from 'react';
 
 export const Account = () => {
   return(
-    <div>
+    <div className='animeLeft'>
       <p>Minha Conta</p>
       </div>
   )

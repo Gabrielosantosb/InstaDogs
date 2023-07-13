@@ -5,7 +5,7 @@ import { View } from 'react-native';
 
 export const ResetPassword = () => {
   return (
-    <div>
+    <div className='animeLeft'>
         <p>Resetar</p>
     </div>
 

@@ -25,6 +25,7 @@ export const USER_GET = (token) => {
 };
 
 export const TOKEN_VALIDATE_POST = (token) => {
+  console.log('Toke:' +token)
   return {
     url: API_URL + "/jwt-auth/v1/token/validate",
     options: {

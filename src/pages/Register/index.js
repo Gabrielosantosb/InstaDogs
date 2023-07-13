@@ -5,7 +5,7 @@ import React from 'react';
 
 export const Register = () => {
   return(
-    <div>
+    <div className='animeLeft'>
       <p>Registar</p>
       </div>
   )

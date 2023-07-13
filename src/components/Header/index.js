@@ -7,10 +7,10 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../Hooks/userContext";
 
 const Header = () => {
-  const[userData, setUserData] = useState('')
-  const {data} = useContext(UserContext)
-  console.log(data)
-  
+  const [userData, setUserData] = useState("");
+  const { data, userLogout } = useContext(UserContext);
+  console.log(data);
+
   return (
     <>
       <HeaderContainer>
@@ -22,6 +22,7 @@ const Header = () => {
         {data ? (
           <ButtonNav to="/minhaConta">
             {data.nome} <HomeIcon />
+            <button onClick={userLogout}>Sair</button>
           </ButtonNav>
         ) : (
           <ButtonNav to="/login">

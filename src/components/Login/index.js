@@ -1,79 +1,83 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { ReactComponent as Loading } from "../../assets/carregando.svg";
-import { ButtonNav } from "../../styles/global";
+import { ButtonNav, Subtitle, Title } from "../../styles/global";
 import axios from "axios";
-import { Button, FormContainer } from "./styles";
+import { Button, FormContainer, LinkContainer, LostPassword, Register } from "./styles";
 import { Input } from "../form/input";
-import { emailValidator, passwordValidator, usernameValidator } from "../../common/validators";
+import {
+  emailValidator,
+  passwordValidator,
+  usernameValidator,
+} from "../../common/validators";
 import { Colors } from "../../styles/colors";
-import { TOKEN_POST, USER_GET } from "../../contants/endpoints";
 import { UserContext } from "../../Hooks/userContext";
+import { Error } from "../../common/error";
 
 export const Login = () => {
   const [userData, setUserData] = useState(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const {userLogin} = useContext(UserContext)
-  
-
-  // Timeout para set error
-  useEffect(() => {
-    setTimeout(() => {
-      setErrorMessage('');
-    }, 3000);
-  }, [errorMessage]);
-
+  const { userLogin, error, loading } = useContext(UserContext);
 
   const validateFields = () => {
     const usernameResult = usernameValidator(username, setErrorMessage);
-    const emailResult = emailValidator();
     const passwordResult = passwordValidator(password, setErrorMessage);
-    if (!usernameResult) {
-      return false;
-    }
-    if (!passwordResult) {
+    if (!usernameResult || !passwordResult) {
       return false;
     }
     return true;
   };
 
+  const handleUsernameBlur = () => {
+    if (usernameValidator(username, setErrorMessage)) {
+      setErrorMessage("");
+    }
+  };
 
-  // #TODO AJUSTAR
+  const handlePasswordBlur = () => {
+    if (passwordValidator(password, setErrorMessage)) {
+      setErrorMessage("");
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!validateFields()) {
       return false;
     }
-    userLogin(username, password)
-  
+    userLogin(username, password);
   };
-  
+
   return (
-    <>
+    <section className="animeLeft">
       <FormContainer>
-        <h1>Login</h1>
+        <Title>Login</Title>
         <form onSubmit={handleSubmit}>
           <p>Usuário</p>
           <Input
             type="text"
             onChange={({ target }) => setUsername(target.value)}
+            onBlur={handleUsernameBlur}
             value={username}
           />
           <p>Senha</p>
           <Input
             type="password"
             onChange={({ target }) => setPassword(target.value)}
+            onBlur={handlePasswordBlur}
             value={password}
           />
-
-          <Button type="submit">Entrar</Button>
-          {loading ? <Loading /> : <></>}
+          <Error error={error} />
+          {loading ? <Loading /> : <Button type="submit">Entrar</Button>}
         </form>
         <p style={{ color: Colors.red }}>{errorMessage}</p>
       </FormContainer>
-      {/* <ButtonNav to="cadastro">Tela de cadastro</ButtonNav> */}
-    </>
+
+      <LinkContainer>
+        <LostPassword to="cadastro">Perdeu a senha?</LostPassword>
+        <Subtitle to="cadastro">Cadastre-se!</Subtitle>
+      </LinkContainer>
+    </section>
   );
 };

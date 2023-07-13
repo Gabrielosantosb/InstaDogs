@@ -34,3 +34,40 @@ margin: 0 8px;
   transition: 0.4s;
 }
 `;
+
+export const Title = styled.h1`
+  font-family: "Spectral", serif;
+  line-height: 1;
+  font-size: 3rem;
+  margin: 1rem 0;
+  position: relative;
+&::after{
+    content: '';
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #fb1;
+    position: absolute;
+    bottom:5px;
+    left:5px;
+    border-radius: 0.2rem;
+    z-index: -1;
+}` ;
+
+export const Subtitle = styled(NavLink)`
+    font-family: "Spectral", serif;
+    text-decoration: none;
+    color: #000;
+    line-height: 1;    
+    font-size: 2rem;
+    &::after{
+
+        content: '';
+        display: block;
+        background: #ddd;
+        height: 0.5rem;
+        width: 3rem;
+        border-radius: 0.2rem;
+        
+    }
+`

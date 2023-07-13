@@ -31,7 +31,7 @@ export const passwordValidator = (password, newPassword, confirmPassword, setErr
     password = "";
   }
 
-  const re = /^.{2,}$/;
+  const re = /^.{3,}$/;
 
   // if (password.length < 3) {
   //   setErrorMessage('O usuário deve ser maior que 3 caracteres');
