@@ -2,7 +2,14 @@ import React, { useContext, useState } from "react";
 import { ReactComponent as Loading } from "../../assets/carregando.svg";
 import { ButtonNav, Subtitle, Title } from "../../styles/global";
 import axios from "axios";
-import { Button, FormContainer, LinkContainer, LostPassword, Register } from "./styles";
+import {
+  Button,
+  FormContainer,
+  LinkContainer,
+  LoginContainer,
+  LostPassword,
+  Register,
+} from "./styles";
 import { Input } from "../form/input";
 import {
   emailValidator,
@@ -51,33 +58,35 @@ export const Login = () => {
 
   return (
     <section className="animeLeft">
-      <FormContainer>
-        <Title>Login</Title>
-        <form onSubmit={handleSubmit}>
-          <p>Usuário</p>
-          <Input
-            type="text"
-            onChange={({ target }) => setUsername(target.value)}
-            onBlur={handleUsernameBlur}
-            value={username}
-          />
-          <p>Senha</p>
-          <Input
-            type="password"
-            onChange={({ target }) => setPassword(target.value)}
-            onBlur={handlePasswordBlur}
-            value={password}
-          />
-          <Error error={error} />
-          {loading ? <Loading /> : <Button type="submit">Entrar</Button>}
-        </form>
-        <p style={{ color: Colors.red }}>{errorMessage}</p>
-      </FormContainer>
+      <LoginContainer>
+        <FormContainer>
+          <Title>Login</Title>
+          <form onSubmit={handleSubmit}>
+            <p>Usuário</p>
+            <Input
+              type="text"
+              onChange={({ target }) => setUsername(target.value)}
+              onBlur={handleUsernameBlur}
+              value={username}
+            />
+            <p>Senha</p>
+            <Input
+              type="password"
+              onChange={({ target }) => setPassword(target.value)}
+              onBlur={handlePasswordBlur}
+              value={password}
+            />
+            <Error error={error} />
+            {loading ? <Loading /> : <Button type="submit">Entrar</Button>}
+          </form>
+          <p style={{ color: Colors.red }}>{errorMessage}</p>
+        </FormContainer>
 
-      <LinkContainer>
-        <LostPassword to="cadastro">Perdeu a senha?</LostPassword>
-        <Subtitle to="cadastro">Cadastre-se!</Subtitle>
-      </LinkContainer>
+        <LinkContainer>
+          <LostPassword to="cadastro">Perdeu a senha?</LostPassword>
+          <Subtitle to="cadastro">Cadastre-se!</Subtitle>
+        </LinkContainer>
+      </LoginContainer>
     </section>
   );
 };

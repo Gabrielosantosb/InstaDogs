@@ -1,15 +1,42 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import loginImage from "../../assets/login.jpg";
 
+export const LoginContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+
+  &::before {
+    display: block;
+    content: "";
+    background-image: url(${loginImage});
+    /* background: url("../../assets/login.jpg") no-repeat center center; */
+  }
+`;
 export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
 `;
 
 export const LinkContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
 `;
+
+// export const LinkContainer = styled.div`
+//   /* display: flex;
+//   flex-direction: column; */
+//   /* display: flex; */
+//   /* flex-direction: column; */
+//   /* align-items: center; */
+//   /* margin-top: 1rem; */
+// `;
 
 export const LostPassword = styled(NavLink)`
   display: inline-block;
@@ -31,8 +58,6 @@ export const Register = styled(NavLink)`
   color: #000;
   text-decoration: none;
   margin-top: 0.5rem;
- 
-  
 `;
 
 export const Button = styled.button`
@@ -42,6 +67,7 @@ export const Button = styled.button`
   background-color: #fb1;
   border-radius: 4px;
   color: #764701;
+  margin-top: 2rem;
   /* margin: 12px 8px; */
   cursor: pointer;
   transition: 0.1s;
