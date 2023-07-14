@@ -1,11 +1,10 @@
 import React, { useContext, useState } from "react";
 import { ReactComponent as Loading } from "../../assets/carregando.svg";
-import { ButtonNav, Subtitle, Title } from "../../styles/global";
+import { ButtonNav, ImageContainer, Subtitle, Title } from "../../styles/global";
 import axios from "axios";
 import {
   Button,
   FormContainer,
-  ImageContainer,
   LinkContainer,
   LoginContainer,
   LostPassword,
@@ -16,6 +15,7 @@ import {
   emailValidator,
   passwordValidator,
   usernameValidator,
+  validateFields,
 } from "../../common/validators";
 import { Colors } from "../../styles/colors";
 import { UserContext } from "../../Hooks/userContext";
@@ -27,15 +27,6 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const { userLogin, error, loading } = useContext(UserContext);
-
-  const validateFields = () => {
-    const usernameResult = usernameValidator(username, setErrorMessage);
-    const passwordResult = passwordValidator(password, setErrorMessage);
-    if (!usernameResult || !passwordResult) {
-      return false;
-    }
-    return true;
-  };
 
   const handleUsernameBlur = () => {
     if (usernameValidator(username, setErrorMessage)) {
@@ -49,16 +40,23 @@ export const Login = () => {
     }
   };
 
+  const validate = () => {
+    const isValid = validateFields(username, password, setErrorMessage);
+    handlePasswordBlur();
+    handleUsernameBlur();
+    return isValid;
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!validateFields()) {
+    if (!validate()) {
       return false;
     }
     userLogin(username, password);
   };
 
   return (
-    <LoginContainer className="animeLeft">
+    <ImageContainer className="animeLeft">
       <FormContainer>
         <Title>Login</Title>
         <form onSubmit={handleSubmit}>
@@ -85,6 +83,6 @@ export const Login = () => {
           <Subtitle to="cadastro">Cadastre-se!</Subtitle>
         </LinkContainer>
       </FormContainer>
-    </LoginContainer>
+    </ImageContainer>
   );
 };

@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components"
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import loginImage from "../../src/assets/login.jpg"
 
 
 export const GlobalStyle = createGlobalStyle`
@@ -21,6 +22,21 @@ export const GlobalStyle = createGlobalStyle`
     }
 
 `
+export const ImageContainer = styled.section`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  gap: 2rem;
+  &::before{
+    display: block;
+    content: '';
+    background: url(${loginImage}) no-repeat center center;
+    background-size: cover;
+  }
+
+
+`;
+
 
 export const ButtonNav = styled(NavLink)`
 text-decoration: none;

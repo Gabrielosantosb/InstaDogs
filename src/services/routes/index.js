@@ -21,9 +21,9 @@ export const Navigation = () => {
         <Routes>
           <Route path="" element={<Home />} />
           <Route path="login" element={<Login />} />
-          <Route path="login/cadastro" element={<LoginForm />} />
+          <Route path="login/cadastro" element={<Register />} />
           <Route path="minhaConta" element={<Account />} />
-          <Route path="cadastro" element={<Register />} />
+          {/* <Route path="cadastro" element={<Register />} /> */}
           <Route path="resetar" element={<ResetPassword />} />
         </Routes>
         <Footer />

@@ -3,12 +3,21 @@ import { View } from "react-native";
 
 // import { Container } from './styles';
 
-export const useForm = () => {
+export const useForm = (type) => {
   const [value, setValue] = useState("");
-    
-  const onChange = (target) => {
+  const [error, setError] = useState('')
+  const validate = (value) =>{
+    if (type === false) return true
+    if (value.length === 0){
+      setError('Preencha um valor')
+    }
+
+
+  }
+
+  const onChange = ({ target }) => {
     setValue(target.value);
   };
 
-  return value, setValue;
+  return { value, setValue, onChange };
 };

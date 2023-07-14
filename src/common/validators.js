@@ -8,7 +8,7 @@ export const usernameValidator = (username, setErrorMessage) => {
   var re = /^[a-zA-Z0-9_]{3,16}$/;
 
   if (username.length < 3) {
-    setErrorMessage('O usuário deve ser maior que 3 caracteres');
+    setErrorMessage("O usuário deve ser maior que 3 caracteres");
     return false;
   }
 
@@ -23,8 +23,12 @@ export const usernameValidator = (username, setErrorMessage) => {
   return errors;
 };
 
-
-export const passwordValidator = (password, newPassword, confirmPassword, setErrorMessage) => {
+export const passwordValidator = (
+  password,
+  newPassword,
+  confirmPassword,
+  setErrorMessage
+) => {
   let errors = {};
 
   if (password === undefined) {
@@ -37,7 +41,6 @@ export const passwordValidator = (password, newPassword, confirmPassword, setErr
   //   setErrorMessage('O usuário deve ser maior que 3 caracteres');
   //   return false;
   // }
-
 
   if (password != null && password.length > 0) {
     if (re.test(password)) {
@@ -86,4 +89,21 @@ export const emailValidator = (email) => {
   }
 
   return errors;
+};
+
+export const validateFields = (username, password, setErrorMessage, email) => {
+  const usernameResult = usernameValidator(username, setErrorMessage);
+  const passwordResult = passwordValidator(password, setErrorMessage);
+  const emailResult = emailValidator(email, setErrorMessage);
+  if (!email) {
+    if (!usernameResult || !passwordResult) {
+      return false;
+    }
+  }
+  
+  if (!usernameResult || !passwordResult || !emailResult) {
+    return false;
+  }
+
+  return true;
 };
