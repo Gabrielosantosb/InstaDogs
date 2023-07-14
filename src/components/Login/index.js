@@ -5,6 +5,7 @@ import axios from "axios";
 import {
   Button,
   FormContainer,
+  ImageContainer,
   LinkContainer,
   LoginContainer,
   LostPassword,
@@ -57,36 +58,33 @@ export const Login = () => {
   };
 
   return (
-    <section className="animeLeft">
-      <LoginContainer>
-        <FormContainer>
-          <Title>Login</Title>
-          <form onSubmit={handleSubmit}>
-            <p>Usuário</p>
-            <Input
-              type="text"
-              onChange={({ target }) => setUsername(target.value)}
-              onBlur={handleUsernameBlur}
-              value={username}
-            />
-            <p>Senha</p>
-            <Input
-              type="password"
-              onChange={({ target }) => setPassword(target.value)}
-              onBlur={handlePasswordBlur}
-              value={password}
-            />
-            <Error error={error} />
-            {loading ? <Loading /> : <Button type="submit">Entrar</Button>}
-          </form>
-          <p style={{ color: Colors.red }}>{errorMessage}</p>
-        </FormContainer>
-
+    <LoginContainer className="animeLeft">
+      <FormContainer>
+        <Title>Login</Title>
+        <form onSubmit={handleSubmit}>
+          <p>Usuário</p>
+          <Input
+            type="text"
+            onChange={({ target }) => setUsername(target.value)}
+            onBlur={handleUsernameBlur}
+            value={username}
+          />
+          <p>Senha</p>
+          <Input
+            type="password"
+            onChange={({ target }) => setPassword(target.value)}
+            onBlur={handlePasswordBlur}
+            value={password}
+          />
+          <Error error={error} />
+          {loading ? <Loading /> : <Button type="submit">Entrar</Button>}
+        </form>
+        <p style={{ color: Colors.red }}>{errorMessage}</p>
         <LinkContainer>
           <LostPassword to="cadastro">Perdeu a senha?</LostPassword>
           <Subtitle to="cadastro">Cadastre-se!</Subtitle>
         </LinkContainer>
-      </LoginContainer>
-    </section>
+      </FormContainer>
+    </LoginContainer>
   );
 };

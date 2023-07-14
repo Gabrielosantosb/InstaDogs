@@ -3,24 +3,26 @@ import styled from "styled-components";
 import loginImage from "../../assets/login.jpg";
 
 export const LoginContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
   gap: 2rem;
-
-  &::before {
+  &::before{
     display: block;
-    content: "";
-    background-image: url(${loginImage});
-    /* background: url("../../assets/login.jpg") no-repeat center center; */
+    content: '';
+    background: url(${loginImage}) no-repeat center center;
+    background-size: cover;
   }
+
+
 `;
 export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   margin-top: 1rem;
 `;
+
 
 export const LinkContainer = styled.div`
   display: flex;
@@ -29,14 +31,7 @@ export const LinkContainer = styled.div`
   margin-top: 1rem;
 `;
 
-// export const LinkContainer = styled.div`
-//   /* display: flex;
-//   flex-direction: column; */
-//   /* display: flex; */
-//   /* flex-direction: column; */
-//   /* align-items: center; */
-//   /* margin-top: 1rem; */
-// `;
+
 
 export const LostPassword = styled(NavLink)`
   display: inline-block;
