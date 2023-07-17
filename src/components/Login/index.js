@@ -12,7 +12,6 @@ import {
 } from "./styles";
 import { Input } from "../form/input";
 import {
-  emailValidator,
   passwordValidator,
   usernameValidator,
   validateFields,
@@ -20,6 +19,7 @@ import {
 import { Colors } from "../../styles/colors";
 import { UserContext } from "../../Hooks/userContext";
 import { Error } from "../../common/error";
+import { useEffect } from "react";
 
 export const Login = () => {
   const [userData, setUserData] = useState(null);
@@ -27,6 +27,10 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const { userLogin, error, loading } = useContext(UserContext);
+
+
+
+ 
 
   const handleUsernameBlur = () => {
     if (usernameValidator(username, setErrorMessage)) {
@@ -49,7 +53,7 @@ export const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!validate()) {
+    if (validate()) {
       return false;
     }
     userLogin(username, password);
@@ -77,7 +81,7 @@ export const Login = () => {
           <Error error={error} />
           {loading ? <Loading /> : <Button type="submit">Entrar</Button>}
         </form>
-        <p style={{ color: Colors.red }}>{errorMessage}</p>
+        {/* <p style={{ color: Colors.red }}>{errorMessage}</p> */}
         <LinkContainer>
           <LostPassword to="cadastro">Perdeu a senha?</LostPassword>
           <Subtitle to="cadastro">Cadastre-se!</Subtitle>
