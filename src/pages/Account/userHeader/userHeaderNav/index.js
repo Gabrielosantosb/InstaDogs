@@ -16,15 +16,15 @@ export const UserHeaderNav = () => {
 
   return (
     <HeaderContainer>
-      <ButtonNav to="minhaConta/feed">
+      <ButtonNav to="feed">
         <MyPhotos />
       </ButtonNav>
 
-      <ButtonNav to="minhaConta/postar">
+      <ButtonNav to="postar">
         <Statics />
       </ButtonNav>
 
-      <ButtonNav to="minhaConta/estatisticas">
+      <ButtonNav to="estatisticas">
         <AddPhotos />
       </ButtonNav>
 

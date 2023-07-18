@@ -1,17 +1,16 @@
-import React from 'react';
-import { View } from 'react-native';
-import { UserHeader } from '../userHeader';
-import { Title } from '../../../styles/global';
+import React from "react";
+import { View } from "react-native";
+import { UserHeader } from "../userHeader";
+import { Title } from "../../../styles/global";
 
 // import { Container } from './styles';
 
 export const UserPhotoPost = () => {
-  return(
+  return (
     <div>
-    <UserHeader>
+      <UserHeader>
         <Title>Postar foto</Title>
-    </UserHeader>
+      </UserHeader>
     </div>
-  )
-}
-
+  );
+};

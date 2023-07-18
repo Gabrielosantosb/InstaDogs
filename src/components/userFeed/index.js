@@ -1,14 +1,12 @@
 import React from "react";
-import { Title } from "../../styles/global";
-import { UserHeader } from "../../pages/Account/userHeader";
+import { Title } from "../../../styles/global";
+import { UserHeader } from "../userHeader";
 
 export const Feed = () => {
   return (
     <>
       <UserHeader>
-      <Title>Principal</Title>
         <Title>Feed</Title>
-        <p>FEED</p>
       </UserHeader>
     </>
   );

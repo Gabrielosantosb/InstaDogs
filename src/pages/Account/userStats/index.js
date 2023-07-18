@@ -7,9 +7,11 @@ import { Title } from '../../../styles/global';
 
 export const UserStats = () => {
   return (
-    <UserHeader>
-        <Title>estatisticas</Title>
-    </UserHeader>
+      <UserHeader>
+
+        <Title>Estatisticas</Title>
+      </UserHeader>
+    
     
 
   )
