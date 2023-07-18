@@ -46,29 +46,17 @@ export const ButtonNav = styled(NavLink)`
   cursor: pointer;
   &:focus {
     background: white;
-    box-shadow: 0 0 0 3px #eee;
+    box-shadow: 0 0 0 3px #fb1;
     border-color: #333;
     outline: none;
   }
   &:active {
     background: white;
-    box-shadow: 0 0 0 3px yellow;
+    box-shadow: 0 0 0 3px #eee;
     border-color: yellow;
   }
 `;
 
-// export const ButtonNav = styled(NavLink)`
-// text-decoration: none;
-// padding: 8px 16px;
-// background-color: #eaeaea;
-// border-radius: 4px;
-// color: #333;
-// margin: 0 8px;
-// &:hover {
-//   background-color: gray;
-//   transition: 0.4s;
-// }
-// `;
 
 export const Title = styled.h1`
   font-family: "Spectral", serif;

@@ -7,10 +7,10 @@ import { Title } from "../../../styles/global";
 
 export const UserPhotoPost = () => {
   return (
-    <div>
+    <section className="animeLeft">
       <UserHeader>
         <Title>Postar foto</Title>
       </UserHeader>
-    </div>
+    </section>
   );
 };

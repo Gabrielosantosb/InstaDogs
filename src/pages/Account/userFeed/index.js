@@ -4,10 +4,10 @@ import { UserHeader } from "../userHeader";
 
 export const Feed = () => {
   return (
-    <>
+    <section className="animeLeft">
       <UserHeader>
         <Title>Feed</Title>
       </UserHeader>
-    </>
+    </section>
   );
 };
