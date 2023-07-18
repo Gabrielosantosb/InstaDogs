@@ -1,36 +1,23 @@
 import React, { useContext, useState } from "react";
 import { ReactComponent as Loading } from "../../assets/carregando.svg";
-import { ButtonNav, ImageContainer, Subtitle, Title } from "../../styles/global";
-import axios from "axios";
-import {
-  Button,
-  FormContainer,
-  LinkContainer,
-  LoginContainer,
-  LostPassword,
-  Register,
-} from "./styles";
+import { ImageContainer, Subtitle, Title } from "../../styles/global";
+
+import { Button, FormContainer, LinkContainer, LostPassword } from "./styles";
 import { Input } from "../form/input";
 import {
   passwordValidator,
   usernameValidator,
   validateFields,
 } from "../../common/validators";
-import { Colors } from "../../styles/colors";
+
 import { UserContext } from "../../Hooks/userContext";
 import { Error } from "../../common/error";
-import { useEffect } from "react";
 
 export const Login = () => {
-  const [userData, setUserData] = useState(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const { userLogin, error, loading } = useContext(UserContext);
-
-
-
- 
 
   const handleUsernameBlur = () => {
     if (usernameValidator(username, setErrorMessage)) {

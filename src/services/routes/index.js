@@ -1,16 +1,15 @@
 import React, { useContext } from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "../../components/Header";
 
 import { Login } from "../../components/Login";
 import Footer from "../../components/Footer";
-import { LoginForm } from "../../components/Login/LoginForm";
 import { Register } from "../../pages/Register";
 import { ResetPassword } from "../../pages/ResetPassword";
-import { Account } from "../../pages/Account";
+import { Account } from "../../pages/Account/AccountRoutes";
 import { Home } from "../../pages/Home";
 import { UserContext, UserStorage } from "../../Hooks/userContext";
-import { ProtectedRoute } from "../../components/ProtectedRoute";
+import { ProtectedRoute } from "../../components/ProtectedRoute"
 export const Navigation = () => {
   // const {login} = useContext(UserContext)
   // if (login === true) return <Navigate to ='/conta'/>
@@ -23,14 +22,14 @@ export const Navigation = () => {
           <Route path="login" element={<Login />} />
           <Route path="login/cadastro" element={<Register />} />
           <Route
-            path="minhaConta"
+            path="minhaConta/*"
             element={
               <ProtectedRoute>
                 <Account />
               </ProtectedRoute>
             }
           />
-          <Route path="minhaConta" element={<Account />} />
+          {/* <Route path="/minhaConta/*" element={<Account />} /> */}
           <Route path="resetar" element={<ResetPassword />} />
         </Routes>
         <Footer />

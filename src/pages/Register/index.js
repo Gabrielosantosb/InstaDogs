@@ -4,88 +4,67 @@ import { Button, FormContainer } from "../../components/Login/styles";
 import { Input } from "../../components/form/input";
 import { Error } from "../../common/error";
 import { ReactComponent as Loading } from "../../assets/carregando.svg";
+import { useFetch } from "../../Hooks/useFetch";
 import { UserContext } from "../../Hooks/userContext";
 import {
   createPassword,
   emailValidator,
   usernameValidator,
+  validateFields,
 } from "../../common/validators";
 import { Colors } from "../../styles/colors";
 import axios from "axios";
 import { USER_POST } from "../../contants/endpoints";
-import { useFetch } from "../../Hooks/useFetch";
 
 export const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const { userLogin, error } = useContext(UserContext);
-  const [isLoading, setIsLoading] = useState(false);
+  const [usernameError, setUsernameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const { userLogin } = useContext(UserContext);
+  const { loading, error, request } = useFetch();
 
-  useEffect(() => {
-    setTimeout(() => {
-      setErrorMessage("");
-    }, 3000);
-  }, [errorMessage]);
-
-  // ##TODO com axios nao funciona, teste depois
-  // ##TODO Fazer isso com hook useFetch
   const handleSubmit = async (event) => {
-    setIsLoading(true);
     event.preventDefault();
-    const { url, options } = USER_POST({
-      username: username,
-      password: password,
-      email: email,
-    });
+    // if (validate()) {
+      const { url, options } = USER_POST({
+        username: username,
+        password: password,
+        email: email,
+      });
+      const {response} = await request(url, options);
+      if (response.ok) userLogin(username, password);
+      
 
-    try {
-      const response = await fetch(url, options);
-      if (response.status === 200) {
-
-        userLogin(username, password);
-
-      } else if (response.status === 403) {
-        setErrorMessage("Usuário já existente");
-
-      } else if (response.status === 406) {
-        console.log(response)
-        setErrorMessage("Dados incompletos");
-      }
-    } catch (error) {
-      setErrorMessage("Falha na API");
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
   };
 
   const handleUsernameBlur = () => {
-    if (usernameValidator(username, setErrorMessage)) {
-      setErrorMessage("");
+    if (usernameValidator(username, setUsernameError)) {
+      setUsernameError("");
     }
   };
 
   const handlePasswordBlur = () => {
-    if (createPassword(password, setErrorMessage)) {
-      setErrorMessage("");
+    if (createPassword(password, setPasswordError)) {
+      setPasswordError("");
     }
   };
 
-  const handeEmailBlur = () => {
-    if (emailValidator(email, setErrorMessage)) {
-      setErrorMessage("");
+  const handleEmailBlur = () => {
+    if (emailValidator(email, setEmailError)) {
+      setEmailError("");
     }
   };
 
-  // const validate = () => {
-  //   const isValid = validateFields(username, password, setErrorMessage);
-  //   handleUsernameBlur();
-  //   handlePasswordBlur();
-  //   handeEmailBlur();
-  //   return isValid;
-  // };
+  const validate = () => {
+    const isValid = validateFields(username, password, setEmailError);
+    handleUsernameBlur();
+    handlePasswordBlur();
+    handleEmailBlur();
+    return isValid;
+  };
 
   return (
     <ImageContainer className="animeLeft">
@@ -99,13 +78,15 @@ export const Register = () => {
             onBlur={handleUsernameBlur}
             onChange={({ target }) => setUsername(target.value)}
           />
+          <p style={{ color: Colors.red }}>{usernameError}</p>
           <p>E-mail</p>
           <Input
             type="text"
             value={email}
-            onBlur={handeEmailBlur}
+            onBlur={handleEmailBlur}
             onChange={({ target }) => setEmail(target.value)}
           />
+          <p style={{ color: Colors.red }}>{emailError}</p>
           <p>Senha</p>
           <Input
             type="password"
@@ -113,11 +94,12 @@ export const Register = () => {
             onBlur={handlePasswordBlur}
             onChange={({ target }) => setPassword(target.value)}
           />
+          <p style={{ color: Colors.red }}>{passwordError}</p>
           <Error error={error} />
-          {/* <p style={{ color: Colors.red }}>{errorMessage}</p> */}
-          {isLoading ? <Loading /> : <Button type="submit">Entrar</Button>}
+          {loading ? <Loading /> : <Button type="submit">Entrar</Button>}
         </form>
       </FormContainer>
     </ImageContainer>
   );
 };
+

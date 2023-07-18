@@ -29,10 +29,10 @@ export const createPassword = (password, setErrorMessage) => {
     password = "";
   }
 
-  var re = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
+  var re = /^.{3,}$/; 
 
-  if (password.length < 8) {
-    setErrorMessage("A senha deve ter pelo menos 8 caracteres");
+  if (password.length < 3) { 
+    setErrorMessage("A senha deve ter pelo menos 3 caracteres"); 
     return false;
   }
 
@@ -44,6 +44,7 @@ export const createPassword = (password, setErrorMessage) => {
     }
   }
 };
+
 
 export const passwordValidator = (
   password,

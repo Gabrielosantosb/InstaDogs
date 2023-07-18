@@ -25,7 +25,7 @@ export const UserStorage = ({ children }) => {
           setLoading(true);
           const decryptedToken = AES.decrypt(
             encryptedToken,
-            "secret-key" // Replace with your secret key
+            "secret-key" 
           ).toString();
           const { url, options } = TOKEN_VALIDATE_POST(decryptedToken);
           const response = await axios(url, options);
@@ -88,6 +88,7 @@ export const UserStorage = ({ children }) => {
       setLogin(false);
       console.log("Error:", error);
     } finally {
+      setLogin(true)
       setLoading(false);
     }
   };
@@ -96,7 +97,7 @@ export const UserStorage = ({ children }) => {
     setData("");
     setError("");
     setLoading(false);
-    setLogin("");
+    setLogin(false);
     window.localStorage.removeItem("token");
   };
 

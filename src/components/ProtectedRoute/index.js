@@ -2,14 +2,20 @@ import React from 'react';
 import { useContext } from 'react';
 import { UserContext } from '../../Hooks/userContext';
 import { Navigate } from 'react-router-dom';
-import { Account } from '../../pages/Account';
 
 
-// import { Container } from './styles';
-
-export const ProtectedRoute = () => {
+export const ProtectedRoute = ({children}) => {
     const {login} = useContext(UserContext)
 
-    return login ? <Navigate to= '/login'/> : <Account/>
+    if (login === true){
+        return children
+    }
+    else if(login === false){
+        return <Navigate to= '/login'/> 
+    }
+
+    else{
+        return<></>
+    }
 }
 
