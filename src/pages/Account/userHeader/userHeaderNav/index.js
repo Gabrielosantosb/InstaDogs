@@ -20,11 +20,11 @@ export const UserHeaderNav = () => {
         <MyPhotos />
       </ButtonNav>
 
-      <ButtonNav to="postar">
+      <ButtonNav to="estatisticas">
         <Statics />
       </ButtonNav>
 
-      <ButtonNav to="estatisticas">
+      <ButtonNav to="postar">
         <AddPhotos />
       </ButtonNav>
 

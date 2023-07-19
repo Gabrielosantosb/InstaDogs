@@ -38,7 +38,6 @@ export const USER_POST = (body) => {
 };
 
 export const TOKEN_VALIDATE_POST = (token) => {
-  console.log("Toke:" + token);
   return {
     url: API_URL + "/jwt-auth/v1/token/validate",
     options: {
@@ -46,6 +45,20 @@ export const TOKEN_VALIDATE_POST = (token) => {
       headers: {
         Authorization: "Bearer " + token,
       },
+    },
+  };
+};
+
+
+export const PHOTO_POST = (formData, token) => {
+  return {
+    url: API_URL + "/api/photo",
+    options: {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+      body: formData,
     },
   };
 };
