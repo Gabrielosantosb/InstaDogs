@@ -1,14 +1,13 @@
 import React from "react";
-import { FeedPhoto, Image } from "../styles";
+import { FeedPhoto, Image, Visualizate } from "../styles";
 
-
-export const FeedPhotosItem = ({photo}) => {
+export const FeedPhotosItem = ({ photo }) => {
   return (
     <FeedPhoto>
-        <Image src={photo.src} alt={photo.title}/>
-        <span>{photo.acessos}</span>
-
-     
+      <Image src={photo.src} alt={photo.title} />
+      <Visualizate>{photo.acessos}</Visualizate>
     </FeedPhoto>
   );
 };
+
+
