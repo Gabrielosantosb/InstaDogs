@@ -1,6 +1,6 @@
 export const API_URL = "https://dogsapi.origamid.dev/json";
 
-export const TOKEN_POST = () => {
+export const TOKEN_POST = (body) => {
   return {
     url: API_URL + "/jwt-auth/v1/token",
     options: {
@@ -8,6 +8,7 @@ export const TOKEN_POST = () => {
       headers: {
         "Content-Type": "application/json",
       },
+      data: body, // Use 'data' instead of 'body' for axios
     },
   };
 };
