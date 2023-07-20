@@ -1,10 +1,15 @@
 import React from "react";
+import { Feed } from "../Account/userFeed";
+import { GlobalContainer } from "../../styles/global";
 
 export const Home = () => {
   return (
-    <div className='animeLeft'>
+    <GlobalContainer className="animeLeft">
+
+      <Feed/>
       <p>Home</p>
-    </div>
+    </GlobalContainer>
+    
   );
 };
 

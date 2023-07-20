@@ -21,6 +21,14 @@ export const GlobalStyle = createGlobalStyle`
     }
 
 `;
+
+export const GlobalContainer = styled.section`
+  margin-top: 4rem;
+
+
+
+`
+
 export const ImageContainer = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;

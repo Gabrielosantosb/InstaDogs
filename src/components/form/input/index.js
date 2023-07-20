@@ -1,8 +1,5 @@
 import React from "react";
-import { View } from "react-native";
 import { Error, InputStyle } from "./styles";
-
-// import { Container } from './styles';
 
 export const Input = ({ label, type, name, value, onChange,errors, onBlur }) => {
  

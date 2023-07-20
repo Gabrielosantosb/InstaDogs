@@ -13,7 +13,7 @@ const Header = () => {
     <>
       <HeaderContainer>
         <GlobalStyle />
-        <ButtonNav to="/" end>
+        <ButtonNav to="/home" end>
           <Dogs />
         </ButtonNav>
 

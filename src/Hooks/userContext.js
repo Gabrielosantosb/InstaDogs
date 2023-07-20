@@ -7,6 +7,7 @@ import {
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AES } from "crypto-js";
+import { useCallback } from "react";
 
 export const UserContext = createContext();
 export const UserStorage = ({ children }) => {
@@ -16,33 +17,7 @@ export const UserStorage = ({ children }) => {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const autoLogin = async () => {
-      const encryptedToken = window.localStorage.getItem("token");
-      if (encryptedToken) {
-        try {
-          setError("");
-          setLoading(true);
-          const decryptedToken = AES.decrypt(
-            encryptedToken,
-            "secret-key" 
-          ).toString();
-          const { url, options } = TOKEN_VALIDATE_POST(decryptedToken);
-          const response = await axios(url, options);
-          if (response.status !== 200) {
-            throw new Error("Invalid Token");
-          }
-          await getUser(decryptedToken);
-        } catch (error) {
-          userLogout();
-          console.error("Error:", error);
-        } finally {
-          setLoading(false);
-        }
-      }
-    };
-    autoLogin();
-  }, []);
+ 
 
   useEffect(() => {
     setTimeout(() => {
@@ -54,52 +29,62 @@ export const UserStorage = ({ children }) => {
     const { url, options } = USER_GET(token);
     const response = await axios.get(url, options);
     setData(response.data);
-    console.log(data.nome);
+    setLogin(true);
+    
   };
 
-  const userLogin = async (username, password) => {
-    const { url, options } = TOKEN_POST({ username, password });
+
+  const userLogin = async(username, password) => {
     try {
-      setError("");
+      setError(null);
       setLoading(true);
-      const tokenResponse = await axios.post(url, { username, password }, options);
-      if (!tokenResponse) {
-        throw new Error(`Error: ${tokenResponse.statusText}`);
-      }
-      const { status } = tokenResponse;
-      const { token } = tokenResponse.data;
-
-      if (status === 403) {
-        setError("Access Denied");
-      }
-
-      if (status === 200) {
-        console.log("Logged in");
-        const encryptedToken = AES.encrypt(token, "secret-key").toString();
-        window.localStorage.setItem("token", encryptedToken);
-        getUser(token);
-        navigate("/home");
-      } else {
-        setError(true);
-        console.log("Login failed");
-      }
-    } catch (error) {
-      setError(error.message);
+      const { url, options } = TOKEN_POST({ username, password });
+      const tokenRes = await fetch(url, options);
+      if (!tokenRes.ok) throw new Error(`Error: ${tokenRes.statusText}`);
+      const { token } = await tokenRes.json();
+      window.localStorage.setItem('token', token);
+      await getUser(token);
+      navigate('/conta');
+    } catch (err) {
+      setError(err.message);
       setLogin(false);
-      console.log("Error:", error);
     } finally {
-      setLogin(true)
       setLoading(false);
     }
-  };
+  }
+ 
+  const userLogout = useCallback(
+    async function () {
+      setData(null);
+      setError(null);
+      setLoading(false);
+      setLogin(false);
+      window.localStorage.removeItem('token');
+      navigate('/login');
+    },
+    [navigate],
+  );
 
-  const userLogout = async () => {
-    setData("");
-    setError("");
-    setLoading(false);
-    setLogin(false);
-    window.localStorage.removeItem("token");
-  };
+  useEffect(() => {
+    const autoLogin = async () => {
+      const token = window.localStorage.getItem('token');
+      if (token) {
+        try {
+          setError(null);
+          setLoading(true);
+          const { url, options } = TOKEN_VALIDATE_POST(token);
+          const response = await fetch(url, options);
+          if (!response.ok) throw new Error('Token inválido');
+          await getUser(token);
+        } catch (err) {
+          userLogout();
+        } finally {
+          setLoading(false);
+        }
+      }
+    }
+    autoLogin();
+  }, [userLogout]);
 
   return (
     <UserContext.Provider
