@@ -1,16 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Feed } from "../Account/userFeed";
-import { GlobalContainer } from "../../styles/global";
+import { GlobalContainer, NormalTitle } from "../../styles/global";
+import { UserContext } from "../../Hooks/userContext";
 
 export const Home = () => {
+  const { login } = useContext(UserContext);
+  
   return (
     <GlobalContainer className="animeLeft">
-
-      <Feed/>
-      <p>Home</p>
+      {login ? (
+        <Feed />
+      ) : (
+        <NormalTitle style={{ display: "flex", justifyContent: "center", height: "100vh",fontSize:'3rem', fontFamily:  "Spectral "  }}>
+          Faça login para continuar!
+        </NormalTitle>
+      )}
     </GlobalContainer>
-    
   );
 };
-
-

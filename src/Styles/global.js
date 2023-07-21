@@ -24,10 +24,7 @@ export const GlobalStyle = createGlobalStyle`
 
 export const GlobalContainer = styled.section`
   margin-top: 4rem;
-
-
-
-`
+`;
 
 export const ImageContainer = styled.section`
   display: grid;
@@ -65,9 +62,6 @@ export const ButtonNav = styled(NavLink)`
   }
 `;
 
-
-
-
 export const Title = styled.h1`
   font-family: "Spectral", serif;
   line-height: 1;
@@ -102,4 +96,11 @@ export const Subtitle = styled(NavLink)`
     width: 3rem;
     border-radius: 0.2rem;
   }
+`;
+
+export const NormalTitle = styled.p`
+  font-family: "Spectral", serif;
+  line-height: 1;
+  font-size: 3rem;
+  margin: 1rem 0;
 `;
