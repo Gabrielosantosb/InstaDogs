@@ -12,7 +12,7 @@ export const Feed = () => {
   return (
     <>
       <Title>Feed</Title>
-      {modalPhoto ? <FeedModal photo={modalPhoto}/> : <></>}
+      {modalPhoto ? <FeedModal photo={modalPhoto} setModalPhoto={setModalPhoto}/>  : <></>}
       <FeedPhotos setModalPhoto={setModalPhoto}/>
     </>
   );

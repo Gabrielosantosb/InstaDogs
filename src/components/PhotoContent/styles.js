@@ -62,14 +62,48 @@ export const Views = styled.p`
     color: black;
     &::before{
         content: '';
+        display: inline-block;
         width: 16px;
         height: 10px;
         margin-right: .5rem;
-        background: url({View}) no-repeat center center;
+        background: url('../../assets/visualizacao-black.svg');
+        /* background: url({View}) no-repeat center center;
+         */
 
     }
 
 `
+
+export const AtributesUl = styled.ul`
+    display: flex;
+    font-size:1.125rem ;
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    
+`
+export const AtributesLi = styled.li`
+    margin-right: 2rem;
+    list-style-type: none;
+    &::before{
+        content: "";
+        display: inline-block;
+        height: 20px;
+        margin-right: 0.5rem;
+        position: relative;
+        top: 3px;
+        width: 2px;
+        background: #333;
+        margin-top: 5px;
+
+
+
+    }
+
+    
+`
+
+
 export const Comments = styled.div`
   padding: 0 2rem;
 `;
