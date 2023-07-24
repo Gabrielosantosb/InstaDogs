@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { UserContext } from "../../Hooks/userContext";
 import { useState } from "react";
 import { CommentsContainer } from "./styles";
+import { CommentSection,CommentItem } from "./PhotoCommentsForm/styles";
 
 // import { Container } from './styles';
 
@@ -13,16 +14,16 @@ export const PhotoComments = (props) => {
 
   return (
     <CommentsContainer>
-      <ul>
+      <CommentSection>
         {comments.map((comment) => (
-          <li key={comment.comment_ID}>
+          <CommentItem key={comment.comment_ID}>
             <b>
               {comment.comment_author}: <span>{comment.comment_content}</span>
             </b>
-          </li>
+          </CommentItem>
         ))}
-      </ul>
-      {login && <PhotoCommentsForm id={props.id} comments={comments} setComments={setComments}/>}
+      </CommentSection>
+      {login && <PhotoCommentsForm id={props.id} comments={comments} setComments={setComments} />}
     </CommentsContainer>
   );
 };

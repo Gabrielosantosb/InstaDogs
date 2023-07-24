@@ -3,8 +3,8 @@ import { useState } from "react";
 import { ReactComponent as Send } from "../../../assets/enviar.svg";
 import { useFetch } from "../../../Hooks/useFetch";
 import { COMMENT_POST } from "../../../contants/endpoints";
-import {Error} from "../../../common/error"
-import { FormContainer } from "./styles";
+import { Error } from "../../../common/error";
+import { Container, FormContainer } from "./styles";
 
 export const PhotoCommentsForm = ({ id, setComments }) => {
   const [comment, setComment] = useState("");
@@ -27,17 +27,16 @@ export const PhotoCommentsForm = ({ id, setComments }) => {
   };
 
   return (
-    
     <FormContainer onSubmit={handleSubmit}>
-      {error && <p>Error: {error}</p>}
       <textarea
+        placeholder="Comente..."
         value={comment}
         onChange={({ target }) => setComment(target.value)}
       />
       <button type="submit">
         <Send />
       </button>
-      <Error error={error}/>
+      <Error error={error} />
     </FormContainer>
   );
 };
