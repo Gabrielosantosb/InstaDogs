@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { UserHeader } from "../userHeader";
-import { Title } from "../../../styles/global";
+import { Title } from "../../../Styles/global";
 
 // import { Container } from './styles';
 

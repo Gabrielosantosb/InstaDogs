@@ -1,5 +1,5 @@
 import React from "react";
-import { Title } from "../../../styles/global";
+import { Title } from "../../../Styles/global";
 import { UserHeaderNav } from "./userHeaderNav";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";

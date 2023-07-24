@@ -1,5 +1,5 @@
 import React from "react";
-import { Title } from "../../../styles/global";
+import { Title } from "../../../Styles/global";
 import { UserHeader } from "../userHeader";
 import { FeedModal } from "./FeedModal";
 import { FeedPhotos } from "./FeedPhotos";

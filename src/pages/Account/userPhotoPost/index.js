@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { View } from "react-native";
 import { UserHeader } from "../userHeader";
-import { Title } from "../../../styles/global";
+import { Title } from "../../../Styles/global";
 import { Input } from "../../../components/form/input";
 import { Button } from "../../../components/Login/styles";
 import { useForm } from "../../../Hooks/useForm";
