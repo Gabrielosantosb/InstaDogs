@@ -2,34 +2,32 @@ import React from "react";
 import { View } from "react-native";
 import { PHOTO_DELETE } from "../../../contants/endpoints";
 import { useFetch } from "../../../Hooks/useFetch";
+import { DeleteButton } from "./styles";
 
 // import { Container } from './styles';
 
 export const PhotoDelete = ({ id }) => {
   const { loading, request } = useFetch();
-  const handleClick = async (event) => {
-    event.preventDefault();
+
+  const handleClick = async () => {
     const { url, options } = PHOTO_DELETE(id);
     try {
-      const response = await request(url, options);
-      console.log(response)
-    //   if (response) {
-    //     window.location.reload(); 
-    //   } else {
-    //     console.log('Foi não')
-    //   }
+      const confirmDelete = window.confirm("Certeza que deseja deletar?");
+      if (confirmDelete) {
+        await request(url, options);
+        window.location.reload();
+      }
     } catch (err) {
       console.log("Error deleting photo:", err);
-      // Handle the error, e.g., show error messages or redirect to a login page if unauthorized
     }
   };
 
   return (
-    <div>
-      <button onClick={handleClick} disabled={loading}>
-        {loading ? "Deleting..." : "Deletar"}
-      </button>
-    </div>
+    <>
+      <DeleteButton onClick={handleClick} disabled={loading}>
+        {loading ? "Deletando..." : "Deletar"}
+      </DeleteButton>
+    </>
   );
 };
 
