@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native";
 import { UserHeader } from "../userHeader";
 import { Title } from "../../../Styles/global";
 
