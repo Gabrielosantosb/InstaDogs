@@ -107,3 +107,25 @@ export const AtributesLi = styled.li`
 export const Comments = styled.div`
   padding: 0 2rem;
 `;
+// -------------------------------SINGLE PAGE-----------------------------------
+
+
+export const SinglePageContainer = styled.section`
+  grid-template-columns: 1fr;
+
+
+`
+
+export const SinglePhotoContentImg = styled.img`
+  grid-row: 1;
+  height: auto;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  
+`;
+
+export const SingleDetails = styled.div`
+  padding: 2rem 0px 0px 0px;
+  
+
+`
