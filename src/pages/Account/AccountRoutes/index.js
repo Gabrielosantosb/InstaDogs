@@ -4,6 +4,7 @@ import { Feed } from "../userFeed";
 import { UserPhotoPost } from "../userPhotoPost";
 import { UserStats } from "../userStats";
 import { UserHeaderNav } from "../userHeader/userHeaderNav";
+import { NotFound } from "../../../components/NotFound";
 
 export const Account = () => {
   return (
@@ -13,6 +14,7 @@ export const Account = () => {
         <Route path="/feed" element={<Feed />} />
         <Route path="/postar" element={<UserPhotoPost />} />
         <Route path="/estatisticas" element={<UserStats />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

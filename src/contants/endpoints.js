@@ -50,6 +50,19 @@ export const TOKEN_VALIDATE_POST = (token) => {
   };
 };
 
+export const LOST_PASSWORD = (body) => {
+  return {
+    url: API_URL + "/api/password/lost",
+    options: {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    },
+  };
+};
+
 export const PHOTO_POST = (formData, token) => {
   return {
     url: API_URL + "/api/photo",
@@ -89,7 +102,7 @@ export const PHOTO_PAGE = (id) => {
   };
 };
 
-export function COMMENT_POST(id, body) {
+export const COMMENT_POST = (id, body) => {
   return {
     url: `${API_URL}/api/comment/${id}`,
     options: {
@@ -101,9 +114,9 @@ export function COMMENT_POST(id, body) {
       body: JSON.stringify(body),
     },
   };
-}
+};
 
-export function PHOTO_DELETE(id) {
+export const PHOTO_DELETE = (id) => {
   return {
     url: `${API_URL}/api/photo/${id}`,
     options: {
@@ -113,4 +126,4 @@ export function PHOTO_DELETE(id) {
       },
     },
   };
-}
+};

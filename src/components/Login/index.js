@@ -68,9 +68,8 @@ export const Login = () => {
           <Error error={error} />
           {loading ? <Loading /> : <Button type="submit">Entrar</Button>}
         </form>
-        {/* <p style={{ color: Colors.red }}>{errorMessage}</p> */}
         <LinkContainer>
-          <LostPassword to="cadastro">Perdeu a senha?</LostPassword>
+          <LostPassword to="perdeu">Perdeu a senha?</LostPassword>
           <Subtitle to="cadastro">Cadastre-se!</Subtitle>
         </LinkContainer>
       </FormContainer>

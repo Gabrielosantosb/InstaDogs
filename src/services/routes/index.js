@@ -11,6 +11,10 @@ import { Home } from "../../pages/Home";
 import { UserContext, UserStorage } from "../../Hooks/userContext";
 import { ProtectedRoute } from "../../components/ProtectedRoute"
 import { Photo } from "../../components/Photo";
+import { UserProfile } from "../../pages/Account/userProfile";
+import { NotFound } from "../../components/NotFound";
+import { LostPassword } from "../../components/Login/styles";
+import { NewPassword } from "../../pages/ResetPassword/NewPassword";
 export const Navigation = () => {
   // const {login} = useContext(UserContext)
   // if (login === true) return <Navigate to ='/conta'/>
@@ -22,6 +26,8 @@ export const Navigation = () => {
           <Route path="/home" element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="login/cadastro" element={<Register />} />
+          <Route path="login/perdeu" element={<ResetPassword />} />
+          <Route path="login/resetar/*" element={<NewPassword />} />
           <Route
             path="minhaConta/*"
             element={
@@ -33,6 +39,8 @@ export const Navigation = () => {
           {/* <Route path="/minhaConta/*" element={<Account />} /> */}
           <Route path="resetar" element={<ResetPassword />} />
           <Route path="foto/:id" element={<Photo />} />
+          <Route path="perfil/:user" element={<UserProfile />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </UserStorage>
