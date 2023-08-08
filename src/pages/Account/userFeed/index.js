@@ -1,13 +1,18 @@
 import React from "react";
-import { Title } from "../../../styles/global";
-import { UserHeader } from "../userHeader";
+import { Title } from "../../../Styles/global";
+
+import { FeedModal } from "./FeedModal";
+import { FeedPhotos } from "./FeedPhotos";
+import { useState } from "react";
 
 export const Feed = () => {
+  const [modalPhoto, setModalPhoto] = useState(null);
+
   return (
-    <section className="animeLeft">
-      <UserHeader>
-        <Title>Feed</Title>
-      </UserHeader>
-    </section>
+    <>
+      <Title>Feed</Title>
+      {modalPhoto ? <FeedModal photo={modalPhoto} setModalPhoto={setModalPhoto}/>  : <></>}
+      <FeedPhotos setModalPhoto={setModalPhoto}/>
+    </>
   );
 };

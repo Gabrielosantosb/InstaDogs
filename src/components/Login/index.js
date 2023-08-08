@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { ReactComponent as Loading } from "../../assets/carregando.svg";
-import { ImageContainer, Subtitle, Title } from "../../styles/global";
+import { ImageContainer, Subtitle, Title } from "../../Styles/global";
 
 import { Button, FormContainer, LinkContainer, LostPassword } from "./styles";
 import { Input } from "../form/input";
@@ -68,9 +68,8 @@ export const Login = () => {
           <Error error={error} />
           {loading ? <Loading /> : <Button type="submit">Entrar</Button>}
         </form>
-        {/* <p style={{ color: Colors.red }}>{errorMessage}</p> */}
         <LinkContainer>
-          <LostPassword to="cadastro">Perdeu a senha?</LostPassword>
+          <LostPassword to="perdeu">Perdeu a senha?</LostPassword>
           <Subtitle to="cadastro">Cadastre-se!</Subtitle>
         </LinkContainer>
       </FormContainer>

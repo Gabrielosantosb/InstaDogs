@@ -4,7 +4,8 @@ import styled from "styled-components";
 export const InputStyle = styled.input`
     border: 1px, solid, #eee;
     display: block;
-    width: 80%;
+    /* width: 80%; */
+    width: ${props => (props.width ? props.width : "80%")};
     font-size: 1rem;
     padding: 0.8rem;
     border-radius: 0.4rem;

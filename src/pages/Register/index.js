@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { ImageContainer, Title } from "../../styles/global";
+import { ImageContainer, Title } from "../../Styles/global";
 import { Button, FormContainer } from "../../components/Login/styles";
 import { Input } from "../../components/form/input";
 import { Error } from "../../common/error";
@@ -12,7 +12,7 @@ import {
   usernameValidator,
   validateFields,
 } from "../../common/validators";
-import { Colors } from "../../styles/colors";
+import { Colors } from "../../Styles/colors";
 import axios from "axios";
 import { USER_POST } from "../../contants/endpoints";
 

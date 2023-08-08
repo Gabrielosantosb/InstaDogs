@@ -21,6 +21,20 @@ export const GlobalStyle = createGlobalStyle`
     }
 
 `;
+
+export const App = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh + 10rem);
+`;
+export const AppBody = styled.main`
+  flex: 1;
+`;
+
+export const GlobalContainer = styled.section`
+  margin-top: 4rem;
+`;
+
 export const ImageContainer = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -57,9 +71,6 @@ export const ButtonNav = styled(NavLink)`
   }
 `;
 
-
-
-
 export const Title = styled.h1`
   font-family: "Spectral", serif;
   line-height: 1;
@@ -94,4 +105,11 @@ export const Subtitle = styled(NavLink)`
     width: 3rem;
     border-radius: 0.2rem;
   }
+`;
+
+export const NormalTitle = styled.p`
+  font-family: "Spectral", serif;
+  line-height: 1;
+  font-size: 3rem;
+  margin: 1rem 0;
 `;

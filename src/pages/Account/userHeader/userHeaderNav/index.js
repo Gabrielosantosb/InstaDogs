@@ -7,7 +7,7 @@ import { ReactComponent as Statics } from "../../../../assets/estatisticas.svg";
 import { ReactComponent as AddPhotos } from "../../../../assets/adicionar.svg";
 import { ReactComponent as Logout } from "../../../../assets/sair.svg";
 import { HeaderContainer } from "../../../../components/Header/styles";
-import { ButtonNav } from "../../../../styles/global";
+import { ButtonNav } from "../../../../Styles/global";
 
 // import { Container } from './styles';
 

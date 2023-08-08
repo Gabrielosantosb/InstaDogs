@@ -1,5 +1,5 @@
 import { ButtonNav, Divider, HeaderContainer, HomeIcon } from "./styles";
-import { GlobalStyle } from "../../styles/global";
+import { GlobalStyle } from "../../Styles/global";
 import { ReactComponent as Dogs } from "../../assets/dogs.svg";
 import { USER_GET } from "../../contants/endpoints";
 import axios from "axios";
@@ -13,7 +13,7 @@ const Header = () => {
     <>
       <HeaderContainer>
         <GlobalStyle />
-        <ButtonNav to="/" end>
+        <ButtonNav to="/home" end>
           <Dogs />
         </ButtonNav>
 
