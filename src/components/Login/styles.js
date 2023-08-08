@@ -57,7 +57,8 @@ export const Button = styled.button`
   margin-top: 2rem;
   cursor: pointer;
   transition: 0.1s;
-  min-width: 8rem;
+  width: 8rem;
+  /* min-width: 8rem; */
   &:hover {
   }
   &:focus {

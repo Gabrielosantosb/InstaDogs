@@ -1,13 +1,12 @@
 import React from "react";
-import { View } from "react-native";
-
-// import { Container } from './styles';
+import { FooterContainer } from "./styles";
+import { ReactComponent as Dogs } from "../../assets/dogs-footer.svg";
 
 const Footer = () => {
   return (
-    <div>
-      <p>Footer</p>
-    </div>
+    <FooterContainer>
+      <Dogs />
+    </FooterContainer>
   );
 };
 

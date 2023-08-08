@@ -22,7 +22,7 @@ export const UserPhotoPost = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (data) navigate("/minhaConta");
+    if (data) navigate("/minhaConta/feed");
   }, [data, navigate]);
 
   const handleSubmit = async (event) => {
