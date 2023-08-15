@@ -5,7 +5,7 @@ import { RESET_PASSWORD } from "../../../contants/endpoints";
 import { Input } from "../../../components/form/input";
 import { Loading } from "../../../common/loading";
 import { Error } from "../../../common/error";
-import { Button } from "../../../components/Login/styles";
+import { Button } from "../../../pages/Login/styles";
 import { NewPasswordCointainer } from "./styles";
 import { ButtonNav, ImageContainer, Title } from "../../../Styles/global";
 import { useFetch } from "../../../Hooks/useFetch";
@@ -27,11 +27,7 @@ export const NewPassword = () => {
     if (loginParam) setLogin(loginParam);
   }, []);
 
-  useEffect(() => {
-    console.log(password);
-    console.log(login);
-    console.log(key);
-  }, [password]);
+
 
   async function handleSubmit(event) {
     event.preventDefault();

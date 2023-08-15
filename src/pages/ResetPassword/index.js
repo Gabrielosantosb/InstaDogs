@@ -1,9 +1,9 @@
 import React from "react";
 import { Input } from "../../components/form/input";
-import { Button, FormContainer } from "../../components/Login/styles";
+import { Button, FormContainer } from "../../pages/Login/styles";
 import { ImageContainer, Title } from "../../Styles/global";
 import { useState } from "react";
-import { usernameValidator } from "../../common/validators"; // Update the import for usernameValidator
+import { usernameValidator } from "../../common/validators"; 
 import { Error } from "../../common/error";
 import { useFetch } from "../../Hooks/useFetch";
 import { LOST_PASSWORD } from "../../contants/endpoints";

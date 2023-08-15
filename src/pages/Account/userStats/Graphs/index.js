@@ -21,7 +21,7 @@ export const UserStatsGraphs = ({ data }) => {
     setGraph(graphData);
   }, [data]);
 
-  console.log(graph);
+
 
   return (
     <GraphContainer>

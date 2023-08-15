@@ -18,7 +18,7 @@ export const PhotoDelete = ({ id }) => {
         window.location.reload();
       }
     } catch (err) {
-      console.log("Error deleting photo:", err);
+      console.log(err);
     }
   };
 

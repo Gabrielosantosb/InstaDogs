@@ -16,7 +16,6 @@ export const Photo = () => {
   const { data, loading, error, request } = useFetch();
 
   useEffect(() => {
-    // console.log('Data: ' + data)
     const { url, options } = PHOTO_PAGE(id);
     request(url, options);
   }, [request, id]);

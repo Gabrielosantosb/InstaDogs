@@ -1,24 +1,21 @@
 import React, { useEffect } from "react";
-import { View } from "react-native";
-import { UserHeader } from "../userHeader";
 import { Title } from "../../../Styles/global";
 import { Input } from "../../../components/form/input";
-import { Button } from "../../../components/Login/styles";
-import { useForm } from "../../../Hooks/useForm";
+import { Button } from "../../../pages/Login/styles";
 import { useState } from "react";
 import { useFetch } from "../../../Hooks/useFetch";
 import { PHOTO_POST } from "../../../contants/endpoints";
 import { PhotoPostContainer, Preview } from "./styles";
 import { useNavigate } from "react-router-dom";
 
-// ##TODO TERMINAR ESTA PAGINA
+
 
 export const UserPhotoPost = () => {
   const [name, setName] = useState("");
   const [peso, setPeso] = useState("");
   const [idade, setIdade] = useState("");
   const [img, setImg] = useState({ preview: "", raw: null });
-  const { data, url, error, loading, request } = useFetch();
+  const { data, request } = useFetch();
   const navigate = useNavigate();
 
   useEffect(() => {

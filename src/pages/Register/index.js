@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { ImageContainer, Title } from "../../Styles/global";
-import { Button, FormContainer } from "../../components/Login/styles";
+import { Button, FormContainer } from "../../pages/Login/styles";
 import { Input } from "../../components/form/input";
 import { Error } from "../../common/error";
 import { ReactComponent as Loading } from "../../assets/carregando.svg";
