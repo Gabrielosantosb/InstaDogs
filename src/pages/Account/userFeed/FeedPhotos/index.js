@@ -7,17 +7,19 @@ import { Error } from "../../../../common/error";
 import { Loading } from "../../../../common/loading";
 import { FeedContainer } from "../styles";
 
-export const FeedPhotos = ({ setModalPhoto }) => {
+export const FeedPhotos = ({  page, user, setModalPhoto, setInfinite }) => {
   const { data, loading, error, request } = useFetch();
 
   useEffect(() => {
-    const getPhotos = async () => {
-      const { url, options } = PHOTOS_GET({ page: 1, total: 6, user: 0 });
-      const { json } = await request(url, options);
-
-    };
+    async function getPhotos() {
+      const total = 3;
+      const { url, options } = PHOTOS_GET({ page, total, user });
+      const { response, json } = await request(url, options);
+      console.log('Request:', json);
+      if (response && response.ok && json.length < total) setInfinite(false);
+    }
     getPhotos();
-  }, [request]);
+  }, [request, user, page, setInfinite]);
 
   if (error) return <Error error={error} />;
   if (loading) return <Loading />;
