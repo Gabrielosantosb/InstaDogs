@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import { Feed } from "../Account/userFeed";
+
 import { GlobalContainer, NormalTitle } from "../../Styles/global";
 import { UserContext } from "../../Hooks/userContext";
+import { Feed } from "../Feed";
 
 export const Home = () => {
   const { login } = useContext(UserContext);

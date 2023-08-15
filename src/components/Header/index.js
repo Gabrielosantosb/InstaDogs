@@ -18,7 +18,7 @@ const Header = () => {
         </ButtonNav>
 
         {data ? (
-          <ButtonNav to="/minhaConta">
+          <ButtonNav to="/minhaConta/feed">
             {data.nome} <HomeIcon />
           </ButtonNav>
         ) : (

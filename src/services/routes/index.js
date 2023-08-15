@@ -1,24 +1,22 @@
-import React, { useContext } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Header from "../../components/Header";
 
 import { Login } from "../../components/Login";
 import Footer from "../../components/Footer";
 import { Register } from "../../pages/Register";
+import { Home } from "../../pages/Home";
 import { ResetPassword } from "../../pages/ResetPassword";
 import { Account } from "../../pages/Account/AccountRoutes";
-import { Home } from "../../pages/Home";
-import { UserContext, UserStorage } from "../../Hooks/userContext";
+import { UserStorage } from "../../Hooks/userContext";
 import { ProtectedRoute } from "../../components/ProtectedRoute";
 import { Photo } from "../../components/Photo";
 import { UserProfile } from "../../pages/Account/userProfile";
 import { NotFound } from "../../components/NotFound";
-import { LostPassword } from "../../components/Login/styles";
 import { NewPassword } from "../../pages/ResetPassword/NewPassword";
 import { App, AppBody } from "../../Styles/global";
+
 export const Navigation = () => {
-  // const {login} = useContext(UserContext)
-  // if (login === true) return <Navigate to ='/conta'/>
   return (
     <App>
       <BrowserRouter>
@@ -26,7 +24,8 @@ export const Navigation = () => {
           <Header />
           <AppBody>
             <Routes>
-              <Route path="/home" element={<Home />} />
+              <Route path="/" element={<Navigate to="/home" />} />
+              <Route path="/home" element={<Home />} end />
               <Route path="login" element={<Login />} />
               <Route path="login/cadastro" element={<Register />} />
               <Route path="login/perdeu" element={<ResetPassword />} />
