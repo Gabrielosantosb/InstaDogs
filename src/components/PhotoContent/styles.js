@@ -111,21 +111,27 @@ export const Comments = styled.div`
 
 
 export const SinglePageContainer = styled.section`
+  display: grid;
   grid-template-columns: 1fr;
-
-
-`
+  gap: 2rem; /* Espaçamento entre elementos */
+  justify-items: center; /* Centraliza os elementos horizontalmente */
+  padding: 2rem; /* Espaçamento interno da seção */
+`;
 
 export const SinglePhotoContentImg = styled.img`
-  grid-row: 1;
+  width: 100%; /* A imagem ocupará a largura completa do contêiner */
+  max-width: 100%;
   height: auto;
   border-radius: 0.4rem;
   overflow: hidden;
-  
 `;
 
 export const SingleDetails = styled.div`
-  padding: 2rem 0px 0px 0px;
-  
+  padding: 2rem 0; /* Espaçamento interno superior e inferior */
+  text-align: center; /* Centraliza o conteúdo de SingleDetails */
+`;
 
-`
+export const SingleDescription = styled.p`
+  margin-top: 1rem; /* Espaçamento superior */
+  color: #555; /* Cor do texto */
+`;

@@ -43,6 +43,19 @@ export const Feed = ({ user }) => {
           setInfinite={setInfinite}
         />
       ))}
+       {/* FEED DE USUARIO */}
+       {user && pages.length === 1 && (
+        <p
+          style={{
+            textAlign: "center",
+            padding: "2rem 0 4rem 0",
+            color: "#888",
+          }}
+        >
+          Este usuário ainda não possui postagens.
+        </p>
+      )}
+
       {!infinite && !user && (
         <p
           style={{
@@ -55,18 +68,7 @@ export const Feed = ({ user }) => {
         </p>
       )}
       
-      {/* PAGE USUARIO */}
-      {user && pages.length === 1 && (
-        <p
-          style={{
-            textAlign: "center",
-            padding: "2rem 0 4rem 0",
-            color: "#888",
-          }}
-        >
-          Este usuário ainda não possui postagens.
-        </p>
-      )}
+     
     </div>
   );
 };

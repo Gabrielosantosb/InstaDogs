@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { GraphContainer, GraphItem, Total } from './styles';
 import { VictoryPie, VictoryChart, VictoryBar } from 'victory';
 
+
 export const UserStatsGraphs = ({ data }) => {
   const [graph, setGraph] = React.useState([]);
   const [total, setTotal] = React.useState(0);
@@ -20,7 +21,7 @@ export const UserStatsGraphs = ({ data }) => {
     setGraph(graphData);
   }, [data]);
 
-  console.log(graph); // Adicione este log para verificar os dados do gráfico
+  console.log(graph);
 
   return (
     <GraphContainer>

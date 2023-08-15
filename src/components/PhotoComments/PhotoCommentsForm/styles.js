@@ -18,11 +18,13 @@ export const CommentItem = styled.li`
   }
 `;
 export const FormContainer = styled.form`
-  position: absolute;
-  bottom: 20px;
   display: flex;
   align-items: center;
   width: 30%;
+
+  position: ${props => (props.single ? 'absolute' : 'absolute')};
+  bottom: ${props => (props.single ? 'auto' : '20px')};
+  /* margin-top: ${props => (props.single ? '10px' : '0')}; */
 
   textarea {
     display: block;

@@ -3,7 +3,7 @@ import { ReactComponent as Loading } from "../../assets/carregando.svg";
 import { ImageContainer, Subtitle, Title } from "../../Styles/global";
 
 import { Button, FormContainer, LinkContainer, LostPassword } from "./styles";
-import { Input } from "../form/input";
+import { Input } from "../../components/form/input";
 import {
   passwordValidator,
   usernameValidator,
@@ -71,6 +71,15 @@ export const Login = () => {
         <LinkContainer>
           <LostPassword to="perdeu">Perdeu a senha?</LostPassword>
           <Subtitle to="cadastro">Cadastre-se!</Subtitle>
+          <p
+          style={{
+            textAlign: "center",
+            padding: "2rem 0 4rem 0",
+            color: "#888",
+          }}
+        >
+          Caso não queria cadastrar, coloque "dog" no usuário e senha
+        </p>
         </LinkContainer>
       </FormContainer>
     </ImageContainer>

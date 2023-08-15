@@ -6,7 +6,7 @@ import { COMMENT_POST } from "../../../contants/endpoints";
 import { Error } from "../../../common/error";
 import { Container, FormContainer } from "./styles";
 
-export const PhotoCommentsForm = ({ id, setComments }) => {
+export const PhotoCommentsForm = ({ id, setComments, single  }) => {
   const [comment, setComment] = useState("");
   const { request, error } = useFetch();
 
@@ -19,15 +19,15 @@ export const PhotoCommentsForm = ({ id, setComments }) => {
       if (response.ok) {
         setComment("");
         setComments((prevComments) => [...prevComments, json]);
-        console.log("Comment posted successfully!", response);
+        
       }
     } catch (err) {
-      console.error("Error posting comment:", err);
+      console.error("Deu erro:", err);
     }
   };
 
   return (
-    <FormContainer onSubmit={handleSubmit}>
+    <FormContainer onSubmit={handleSubmit} single={single} >
       <textarea
         placeholder="Comente..."
         value={comment}

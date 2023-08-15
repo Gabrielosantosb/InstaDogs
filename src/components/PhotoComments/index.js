@@ -23,7 +23,7 @@ export const PhotoComments = (props) => {
           </CommentItem>
         ))}
       </CommentSection>
-      {login && <PhotoCommentsForm id={props.id} comments={comments} setComments={setComments} />}
+      {login && <PhotoCommentsForm id={props.id} comments={comments} setComments={setComments} single={props.single} />}
     </CommentsContainer>
   );
 };

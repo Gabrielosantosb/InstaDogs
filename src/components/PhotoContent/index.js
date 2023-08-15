@@ -49,7 +49,7 @@ export const PhotoContent = ({ data, singlePage }) => {
               <AtributesLi>{photo.peso}kg</AtributesLi>
               <AtributesLi>{photo.idade} anos</AtributesLi>
             </AtributesUl>
-            <PhotoComments id={photo.id} comments={comments} />
+            <PhotoComments id={photo.id} comments={comments} single={singlePage}/>
           </SingleDetails>
         </SinglePageContainer>
       ) : (
